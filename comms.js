@@ -1,0 +1,85 @@
+const config = require('./config.json'); // Подключаем файл с параметрами и информацией
+const Discord = require('discord.js'); // Подключаем библиотеку discord.js
+const prefix = config.prefix; // «Вытаскиваем» префикс
+
+// Команды //
+
+function buy(robot, mess, args) {
+  const arggs = mess.content.split(' ').slice(1); // Все аргументы за именем команды 
+  const lvl = arggs[0]; // какие арты необходимо купить
+  const quantity = arggs[1]; // количество артов
+  const sentence = arggs[2] // какие арты предлагаем
+
+  if (!lvl) return mess.channel.send('Укажите пожалуйста лвл желаемых артов, количество которое хотите купить и лвл артов для обмена.'); // Проверка, задан ли параметр
+  if (!quantity) return mess.channel.send('Укажите пожалуйста лвл желаемых артов, количество которое хотите купить и лвл артов для обмена.');
+  if (!sentence) return mess.channel.send('Укажите пожалуйста лвл желаемых артов, количество которое хотите купить и лвл артов для обмена.');
+  if (isNaN(lvl)) return mess.channel.send('Это не число!'); // Проверка, является ли числом ввод пользователя
+  if (isNaN(quantity)) return mess.channel.send('Это не число!');
+  if (isNaN(sentence)) return mess.channel.send('Это не число!');
+
+  if (lvl > 9) return mess.channel.send('Несуществующий лвл арта'); // Проверка, является ли ввод пользователя корректным числом 
+  if (lvl < 1) return mess.channel.send('Вы должны ввести число больше чем 1'); // Проверка, является ли ввод пользователя корректным числом 
+
+  switch (lvl) {
+    case "9":
+      nine(quantity, sentence, lvl)
+      break;
+  
+    default:
+      mess.channel.send("обламался при проверке лвл арты");
+      break;
+  }
+  function nine(quantity, sentence, lvl) {
+    let result
+    switch (sentence) {
+      
+      case "4":
+        result = quantity * 6;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "5":
+        result = quantity * 5;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "6":
+        result = quantity * 3.5;
+        Math.round(result)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "7":
+        result = quantity * 2.5;
+        Math.round(result)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "8":
+        result = quantity * 2;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+      
+      default:
+        mess.channel.send("Затупил при расчетах")
+        mess.channel.send("лвл предложения "+ sentence)
+        break;
+    }
+  }
+ 
+}
+
+
+// Список команд //
+
+var comms_list = [{
+  name: "купить",
+  out: buy,
+  about: "Подсчет количества необходимых артов для покупки"
+}];
+
+// Name - название команды, на которую будет реагировать бот
+// Out - название функции с командой
+// About - описание команды 
+
+module.exports.comms = comms_list;
