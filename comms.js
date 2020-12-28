@@ -17,10 +17,19 @@ function buy(robot, mess, args) {
   if (isNaN(quantity)) return mess.channel.send('Это не число!');
   if (isNaN(sentence)) return mess.channel.send('Это не число!');
 
-  if (lvl > 9) return mess.channel.send('Несуществующий лвл арта'); // Проверка, является ли ввод пользователя корректным числом 
+  if (lvl > 10) return mess.channel.send('Несуществующий лвл арта'); // Проверка, является ли ввод пользователя корректным числом 
   if (lvl < 1) return mess.channel.send('Вы должны ввести число больше чем 1'); // Проверка, является ли ввод пользователя корректным числом 
 
   switch (lvl) {
+    case "6":
+      six(quantity, sentence, lvl)
+      break;
+    case "7": 
+      seven(quantity, sentence, lvl)
+      break;
+    case "8":
+      eight(quantity, sentence, lvl)
+      break;
     case "9":
       nine(quantity, sentence, lvl)
       break;
@@ -29,6 +38,88 @@ function buy(robot, mess, args) {
       mess.channel.send("обламался при проверке лвл арты");
       break;
   }
+
+  function six(quantity, sentence, lvl) {
+    let result
+    switch (sentence) {
+      
+      case "4":
+        result = quantity * 3;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "5":
+        result = quantity * 2;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+      
+      default:
+        mess.channel.send("Затупил при расчетах")
+        mess.channel.send("лвл предложения "+ sentence)
+        break;
+    }
+  }
+
+  function seven(quantity, sentence, lvl) {
+    let result
+    switch (sentence) {
+      
+      case "4":
+        result = quantity * 4;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "5":
+        result = quantity * 3;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "6":
+        result = quantity * 2;
+        Math.round(result)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+      
+      default:
+        mess.channel.send("Затупил при расчетах")
+        mess.channel.send("лвл предложения "+ sentence)
+        break;
+    }
+  }
+
+  function eight(quantity, sentence, lvl) {
+    let result
+    switch (sentence) {
+      
+      case "4":
+        result = quantity * 5.5;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "5":
+        result = quantity * 4;
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "6":
+        result = quantity * 3;
+        Math.round(result)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+
+      case "7":
+        result = quantity * 2;
+        Math.round(result)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        break;
+      
+      default:
+        mess.channel.send("Затупил при расчетах")
+        mess.channel.send("лвл предложения "+ sentence)
+        break;
+    }
+  }
+
   function nine(quantity, sentence, lvl) {
     let result
     switch (sentence) {
