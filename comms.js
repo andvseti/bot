@@ -4,6 +4,11 @@ const prefix = config.prefix; // «Вытаскиваем» префикс
 
 // Команды //
 
+//function ping() {
+//  let myChannel = 'channel ID'
+//  client.channels.cache.get(myChannel).send("Mentioning. @Торговец");
+//}
+
 function buy(robot, mess, args) {
   const arggs = mess.content.split(' ').slice(1); // Все аргументы за именем команды 
   const lvl = arggs[0]; // какие арты необходимо купить
@@ -19,6 +24,14 @@ function buy(robot, mess, args) {
 
   if (lvl > 10) return mess.channel.send('Несуществующий лвл арта'); // Проверка, является ли ввод пользователя корректным числом 
   if (lvl < 1) return mess.channel.send('Вы должны ввести число больше чем 1'); // Проверка, является ли ввод пользователя корректным числом 
+
+  function ping() {
+    const filter = (reaction, user) => reaction.emoji.name === '👍' && user.id === mess.author.id;
+    
+    mess.awaitReactions(filter, { time: 6000})
+      .then(collected => mess.channel.send("<@&792763011206479912>"))
+      .catch(console.error);
+  }
 
   switch (lvl) {
     case "6":
@@ -46,16 +59,22 @@ function buy(robot, mess, args) {
       case "4":
         result = quantity * 3;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "5":
         result = quantity * 2;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
       
       default:
         mess.channel.send("Затупил при расчетах")
         mess.channel.send("лвл предложения "+ sentence)
+        mess.react('👍');
+        ping()
         break;
     }
   }
@@ -67,17 +86,23 @@ function buy(robot, mess, args) {
       case "4":
         result = quantity * 4;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "5":
         result = quantity * 3;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "6":
         result = quantity * 2;
         Math.round(result)
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
       
       default:
@@ -94,23 +119,31 @@ function buy(robot, mess, args) {
       case "4":
         result = quantity * 5.5;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "5":
         result = quantity * 4;
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "6":
         result = quantity * 3;
         Math.round(result)
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
 
       case "7":
         result = quantity * 2;
         Math.round(result)
         mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.react('👍');
+        ping()
         break;
       
       default:
@@ -126,29 +159,40 @@ function buy(robot, mess, args) {
       
       case "4":
         result = quantity * 6;
-        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence + " чтобы позвать продавца, нажми палец вверх")
+        //mess.channel.send("<@&792763011206479912>");
+        mess.react('👍');
+        ping(); 
         break;
 
       case "5":
         result = quantity * 5;
-        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence + " чтобы позвать продавца, нажми палец вверх")
+        mess.react('👍');
+        ping(); 
         break;
 
       case "6":
         result = quantity * 3.5;
         Math.round(result)
-        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence + " чтобы позвать продавца, нажми палец вверх")
+        mess.react('👍');
+        ping(); 
         break;
 
       case "7":
         result = quantity * 2.5;
         Math.round(result)
-        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence + " чтобы позвать продавца, нажми палец вверх")
+        mess.react('👍');
+        ping(); 
         break;
 
       case "8":
         result = quantity * 2;
-        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence)
+        mess.reply("для покупки асорти артов лвл " + lvl + " нужно " + result + " артов лвл " + sentence + " чтобы позвать продавца, нажми палец вверх")
+        mess.react('👍');
+        ping(); 
         break;
       
       default:
