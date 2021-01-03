@@ -27,4 +27,5 @@ robot.on('message', (msg) => { // Реагирование на сообщени
 });
 
 
+
 robot.login(token); // Авторизация бота
