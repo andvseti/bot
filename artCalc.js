@@ -1,4 +1,5 @@
 function calc(lvl, lvlp, quantity) {
+    console.log("calc")
     if (lvlp == lvl - 1) return quantity * 2;
     else if (lvlp == lvl -2) return quantity * 3;
     else if (lvlp == lvl -3 && lvlp != 6) return quantity * 4;
@@ -9,6 +10,7 @@ function calc(lvl, lvlp, quantity) {
     else return false;
 }
 function calcP(lvl, lvlp, quantity) {
+    console.log("calcP")
     if (lvlp == lvl - 1) return quantity / 2;
     else if (lvlp == lvl -2) return quantity / 3;
     else if (lvlp == lvl -3 && lvlp != 6) return quantity / 4;
